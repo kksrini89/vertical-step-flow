@@ -11,8 +11,8 @@ interface StepItem {
 const steps: StepItem[] = [
   { title: 'DRAFT', subtitle: 'Pre execution', panelHeight: 220 },
   { title: 'APPROVED', subtitle: 'Pre execution', panelHeight: 110 },
-  { title: 'ACTIVE', subtitle: 'Execution review', panelHeight: 170 },
-  { title: 'COMPLETED', subtitle: 'Archive summary', panelHeight: 140 },
+  { title: 'ACTIVE', subtitle: 'Pre execution', panelHeight: 170 },
+  { title: 'COMPLETED', subtitle: 'Pre execution', panelHeight: 140 },
 ]
 
 const activeStepIndex = ref(0)

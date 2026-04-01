@@ -53,8 +53,8 @@ defineEmits<{
 
 <style scoped lang="scss">
 .flow-step {
-  --flow-step-head-height: 24px;
-  --flow-step-marker-size: 16px;
+  --flow-step-head-height: 30px;
+  --flow-step-marker-size: 20px;
   --flow-step-marker-center: calc(var(--flow-step-head-height) / 2);
   --flow-step-marker-top: calc(
     (var(--flow-step-head-height) - var(--flow-step-marker-size)) / 2
@@ -101,9 +101,20 @@ defineEmits<{
     border-radius: 50%;
     transform: translateX(-50%);
     background: #5a5a5f;
-    border: 6px solid #5a5a5f;
-    box-sizing: content-box;
+    display: grid;
+    place-items: center;
     z-index: 1;
+  }
+
+  &__marker::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: #ffffff;
+    transition:
+      width 0.2s ease,
+      height 0.2s ease;
   }
 
   &__body {
@@ -111,7 +122,7 @@ defineEmits<{
   }
 
   &__head {
-    min-height: var(--flow-step-head-height);
+    height: var(--flow-step-head-height);
     display: flex;
     align-items: center;
   }
@@ -125,10 +136,13 @@ defineEmits<{
     color: #808087;
     font: inherit;
     font-size: 19px;
-    line-height: 1.15;
+    line-height: 1;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
     transition: color 0.2s ease;
   }
 
@@ -174,7 +188,11 @@ defineEmits<{
   &--active {
     .flow-step__marker {
       background: #7fd0a1;
-      border-color: #7fd0a1;
+    }
+
+    .flow-step__marker::after {
+      width: 8px;
+      height: 8px;
     }
 
     .flow-step__title {
@@ -185,7 +203,8 @@ defineEmits<{
 
 @media (max-width: 640px) {
   .flow-step {
-    --flow-step-head-height: 20px;
+    --flow-step-head-height: 26px;
+    --flow-step-marker-size: 18px;
 
     grid-template-columns: 24px 1fr;
     column-gap: 18px;
