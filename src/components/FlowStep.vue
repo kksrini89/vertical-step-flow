@@ -17,7 +17,11 @@ defineEmits<{
   <li class="flow-step" :class="{ 'flow-step--active': isActive }">
     <div class="flow-step__track" aria-hidden="true">
       <span v-if="!isFirst" class="flow-step__line flow-step__line--top"></span>
-      <span v-if="!isLast" class="flow-step__line flow-step__line--bottom"></span>
+      <span
+        v-if="!isLast || isActive"
+        class="flow-step__line"
+        :class="isLast ? 'flow-step__line--tail' : 'flow-step__line--bottom'"
+      ></span>
       <span class="flow-step__marker"></span>
     </div>
 
@@ -90,6 +94,11 @@ defineEmits<{
   &__line--bottom {
     top: var(--flow-step-marker-center);
     bottom: -12px;
+  }
+
+  &__line--tail {
+    top: var(--flow-step-marker-center);
+    bottom: 12px;
   }
 
   &__marker {
